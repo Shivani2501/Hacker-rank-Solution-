@@ -1,42 +1,33 @@
 # Hacker-rank-Solution-
-I have written code for apple and orange question on hacker rank in c++
+I have written code for Bill Division on hacker rank in c++
 #include <bits/stdc++.h>
 
 using namespace std;
-
 int main()
 {
-    int starth,endh,applet,oranget,napp,norange;
-    cin>>starth>>endh>>applet>>oranget>>napp>>norange;
-    int nap[napp];
-    for(int i=0;i<napp;i++)
+    int arrs,arrel,paid,refund;
+    cin>>arrs>>arrel;
+    int arr[arrs];
+    for(int i=0;i<arrs;i++)
     {
-        cin>>nap[i];
+        cin>>arr[i];
     }
-    int nor[norange];
-       for(int i=0;i<norange;i++)
+    cin>>paid;
+    int sum =0;
+    for(int i=0;i<arrs;i++)
     {
-        cin>>nor[i];
-    }
-    int acount=0;
-    int ocount=0;
-    
-    for(int i=0;i<napp;i++)
-    {
-        if(((applet+nap[i])>=starth)&&((applet+nap[i])<=endh))
+        if(i!=arrel)
         {
-            acount++;
-        }
-        
-        
-    }
-    for(int i=0;i<norange;i++)
-    {
-        if(((oranget+nor[i])<=endh)&&((oranget+nor[i])>=starth))
-        {
-            ocount++;
+            sum+=arr[i];
         }
     }
-    cout<<acount<<endl;
-    cout<<ocount<<endl;
+    if(sum/2==paid)
+    {
+        cout<<"Bon Appetit";
+    }else 
+    {
+        refund=paid-(sum/2);
+        cout<<refund;
+    }
+    return 0;
 }
