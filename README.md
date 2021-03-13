@@ -1,51 +1,100 @@
 # Hacker-rank-Solution-
-I have written this code in CPP at hackerank on between the sets
+I have written this code in CPP at hackerank on breaking the records
 #include <bits/stdc++.h>
 
 using namespace std;
 
+vector<string> split_string(string);
+
+// Complete the breakingRecords function below.
+vector<int> breakingRecords(vector<int> scores) {
+int min=scores[0];
+int max=scores[0];
+int incount=0;
+int axcount=0;
+vector<int> m;
+for(int i=1;i<scores.size();i++)
+{
+    if(scores[i]>max)
+    {
+        axcount++;
+        max=scores[i];
+    }else if(scores[i]<min)
+    {
+        incount++;
+        min=scores[i];
+    }
+}
+m.push_back(axcount);
+m.push_back(incount);
+
+return m;
+
+}
+
 int main()
 {
-    int na1,na2;
-    cin>>na1>>na2;
-    int arr1[na1];
-    int arr2[na2];
-    vector<int>v;
-    for(int i=0;i<na1;i++)
-    {
-        cin>>arr1[i];
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    int n;
+    cin >> n;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    string scores_temp_temp;
+    getline(cin, scores_temp_temp);
+
+    vector<string> scores_temp = split_string(scores_temp_temp);
+
+    vector<int> scores(n);
+
+    for (int i = 0; i < n; i++) {
+        int scores_item = stoi(scores_temp[i]);
+
+        scores[i] = scores_item;
     }
-    for(int i=0;i<na2;i++)
-    {
-        cin>>arr2[i];
+
+    vector<int> result = breakingRecords(scores);
+
+    for (int i = 0; i < result.size(); i++) {
+        fout << result[i];
+
+        if (i != result.size() - 1) {
+            fout << " ";
+        }
     }
-    int fac=1;
-    while(fac<=100)
-    {
-        int count1=0;
-        int count2=0;
-        for(int i=0;i<na1;i++)
-        {
-            if((fac%arr1[i])==0)
-            {
-                count1++;
-            }
-        }
-        for(int i=0;i<na2;i++)
-        {
-            if((arr2[i]%fac)==0)
-            {
-                count2++;
-            }
-        }
-        if((count1==na1)&&(count2==na2))
-        {
-            v.push_back(fac);
-        }
-        fac++;
-    }
-    
-    cout<<v.size()<<endl;
-    
+
+    fout << "\n";
+
+    fout.close();
+
     return 0;
+}
+
+vector<string> split_string(string input_string) {
+    string::iterator new_end = unique(input_string.begin(), input_string.end(), [] (const char &x, const char &y) {
+        return x == y and x == ' ';
+    });
+
+    input_string.erase(new_end, input_string.end());
+
+    while (input_string[input_string.length() - 1] == ' ') {
+        input_string.pop_back();
+    }
+
+    vector<string> splits;
+    char delimiter = ' ';
+
+    size_t i = 0;
+    size_t pos = input_string.find(delimiter);
+
+    while (pos != string::npos) {
+        splits.push_back(input_string.substr(i, pos - i));
+
+        i = pos + 1;
+        pos = input_string.find(delimiter, i);
+    }
+
+    splits.push_back(input_string.substr(i, min(pos, input_string.length()) - i + 1));
+
+    return splits;
 }
