@@ -1,42 +1,74 @@
 # Hacker-rank-Solution-
-I have written code for apple and orange question on hacker rank in c++
+I have written code for Counting valleys question on hacker rank in c++
 #include <bits/stdc++.h>
 
 using namespace std;
 
+string ltrim(const string &);
+string rtrim(const string &);
+
+int countingValleys(int steps, string path) {
+int up=0;
+int down =0;
+for(int i=0;i<steps;i++)
+{
+   if(path[i]=='U')
+   {
+       up++;
+       if(up==0)
+       {
+           down++;
+       }
+   }
+   else {
+   
+       up--;
+   }
+ }
+ 
+ return down;
+ 
+}
+
 int main()
 {
-    int starth,endh,applet,oranget,napp,norange;
-    cin>>starth>>endh>>applet>>oranget>>napp>>norange;
-    int nap[napp];
-    for(int i=0;i<napp;i++)
-    {
-        cin>>nap[i];
-    }
-    int nor[norange];
-       for(int i=0;i<norange;i++)
-    {
-        cin>>nor[i];
-    }
-    int acount=0;
-    int ocount=0;
-    
-    for(int i=0;i<napp;i++)
-    {
-        if(((applet+nap[i])>=starth)&&((applet+nap[i])<=endh))
-        {
-            acount++;
-        }
-        
-        
-    }
-    for(int i=0;i<norange;i++)
-    {
-        if(((oranget+nor[i])<=endh)&&((oranget+nor[i])>=starth))
-        {
-            ocount++;
-        }
-    }
-    cout<<acount<<endl;
-    cout<<ocount<<endl;
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string steps_temp;
+    getline(cin, steps_temp);
+
+    int steps = stoi(ltrim(rtrim(steps_temp)));
+
+    string path;
+    getline(cin, path);
+
+    int result = countingValleys(steps, path);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
+
+string ltrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
+    );
+
+    return s;
+}
+
+string rtrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+        s.end()
+    );
+
+    return s;
 }
