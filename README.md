@@ -6,78 +6,42 @@ using namespace std;
 
 vector<string> split_string(string);
 
- 
- int getMoneySpent(vector<int> keyboards, vector<int> drives, int b) {
+// Complete the catAndMouse function below.
+string catAndMouse(int x, int y, int z) {
 
-  int sum=0;
-  int maxsum=0;
-  for(int i=0;i<keyboards.size();i++)
-  {
-    
-      for(int j=0;j<drives.size();j++)
-      {
-          int sum=keyboards[i]+drives[j];
-          if(sum>maxsum && sum<=b)
-          {
-              maxsum=sum;
-          }
-          
-        }
-  }
-  if(maxsum==0) return -1;
-  else
-  return maxsum;
- }
-
+int cata=abs(x-z);
+int catb=abs(y-z);
+if(cata==catb) return "Mouse C";
+else if(cata>catb) 
+return "Cat B";
+else  
+return "Cat A";
+}
 
 int main()
 {
     ofstream fout(getenv("OUTPUT_PATH"));
 
-    string bnm_temp;
-    getline(cin, bnm_temp);
+    int q;
+    cin >> q;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    vector<string> bnm = split_string(bnm_temp);
+    for (int q_itr = 0; q_itr < q; q_itr++) {
+        string xyz_temp;
+        getline(cin, xyz_temp);
 
-    int b = stoi(bnm[0]);
+        vector<string> xyz = split_string(xyz_temp);
 
-    int n = stoi(bnm[1]);
+        int x = stoi(xyz[0]);
 
-    int m = stoi(bnm[2]);
+        int y = stoi(xyz[1]);
 
-    string keyboards_temp_temp;
-    getline(cin, keyboards_temp_temp);
+        int z = stoi(xyz[2]);
 
-    vector<string> keyboards_temp = split_string(keyboards_temp_temp);
+        string result = catAndMouse(x, y, z);
 
-    vector<int> keyboards(n);
-
-    for (int keyboards_itr = 0; keyboards_itr < n; keyboards_itr++) {
-        int keyboards_item = stoi(keyboards_temp[keyboards_itr]);
-
-        keyboards[keyboards_itr] = keyboards_item;
+        fout << result << "\n";
     }
-
-    string drives_temp_temp;
-    getline(cin, drives_temp_temp);
-
-    vector<string> drives_temp = split_string(drives_temp_temp);
-
-    vector<int> drives(m);
-
-    for (int drives_itr = 0; drives_itr < m; drives_itr++) {
-        int drives_item = stoi(drives_temp[drives_itr]);
-
-        drives[drives_itr] = drives_item;
-    }
-
-    /*
-     * The maximum amount of money she can spend on a keyboard and USB drive, or -1 if     she can't purchase both items
-     */
-
-    int moneySpent = getMoneySpent(keyboards, drives, b);
-
-    fout << moneySpent << "\n";
 
     fout.close();
 
