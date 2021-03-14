@@ -1,42 +1,50 @@
 # Hacker-rank-Solution-
-I have written code for apple and orange question on hacker rank in c++
+I have written code for Utopian tree question on hacker rank in c++
 #include <bits/stdc++.h>
 
 using namespace std;
 
+// Complete the utopianTree function below.
+int utopianTree(int n) {
+int height =1;
+int yr=n;
+for(int i=0;i<=yr;i++)
+{
+ if(i==0)
+ {
+    height=1;
+ }
+ else if(i%2==0)
+ {
+    height+=1;
+
+ }else
+ {
+    height*=2;
+ }
+}
+return height;
+}
+
 int main()
 {
-    int starth,endh,applet,oranget,napp,norange;
-    cin>>starth>>endh>>applet>>oranget>>napp>>norange;
-    int nap[napp];
-    for(int i=0;i<napp;i++)
-    {
-        cin>>nap[i];
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    int t;
+    cin >> t;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    for (int t_itr = 0; t_itr < t; t_itr++) {
+        int n;
+        cin >> n;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        int result = utopianTree(n);
+
+        fout << result << "\n";
     }
-    int nor[norange];
-       for(int i=0;i<norange;i++)
-    {
-        cin>>nor[i];
-    }
-    int acount=0;
-    int ocount=0;
-    
-    for(int i=0;i<napp;i++)
-    {
-        if(((applet+nap[i])>=starth)&&((applet+nap[i])<=endh))
-        {
-            acount++;
-        }
-        
-        
-    }
-    for(int i=0;i<norange;i++)
-    {
-        if(((oranget+nor[i])<=endh)&&((oranget+nor[i])>=starth))
-        {
-            ocount++;
-        }
-    }
-    cout<<acount<<endl;
-    cout<<ocount<<endl;
+
+    fout.close();
+
+    return 0;
 }
