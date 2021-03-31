@@ -1,42 +1,19 @@
 # Hacker-rank-Solution-
-I have written code for apple and orange question on hacker rank in c++
-#include <bits/stdc++.h>
-
-using namespace std;
-
-int main()
-{
-    int starth,endh,applet,oranget,napp,norange;
-    cin>>starth>>endh>>applet>>oranget>>napp>>norange;
-    int nap[napp];
-    for(int i=0;i<napp;i++)
-    {
-        cin>>nap[i];
-    }
-    int nor[norange];
-       for(int i=0;i<norange;i++)
-    {
-        cin>>nor[i];
-    }
-    int acount=0;
-    int ocount=0;
+I have written this code of day of a programmer on hackerrank in problem solving in C++
+string dayOfProgrammer(int year) {
     
-    for(int i=0;i<napp;i++)
-    {
-        if(((applet+nap[i])>=starth)&&((applet+nap[i])<=endh))
-        {
-            acount++;
-        }
-        
-        
-    }
-    for(int i=0;i<norange;i++)
-    {
-        if(((oranget+nor[i])<=endh)&&((oranget+nor[i])>=starth))
-        {
-            ocount++;
-        }
-    }
-    cout<<acount<<endl;
-    cout<<ocount<<endl;
+ string yr;   
+if(year==1918)
+{
+    yr="26.09.1918";
+}
+else if(((year <=1917) && (year % 4==0)) || ((year>1918) &&((year%400==0)||((year%4==0)&&(year%100!=0)))))
+  {
+      yr="12.09."+to_string(year);
+  }
+ else {
+     yr="13.09."+to_string(year);
+ } 
+return yr;
+
 }
