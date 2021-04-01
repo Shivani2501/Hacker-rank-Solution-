@@ -1,42 +1,35 @@
 # Hacker-rank-Solution-
-I have written code for apple and orange question on hacker rank in c++
-#include <bits/stdc++.h>
+I have written code for Marc's Cakewalk question on hacker rank in c++
+#include<iostream>
+#include<set>
+#include<limits>
+#include<cmath>
+#include<algorithm>
 
 using namespace std;
-
+#define ll long long int
 int main()
 {
-    int starth,endh,applet,oranget,napp,norange;
-    cin>>starth>>endh>>applet>>oranget>>napp>>norange;
-    int nap[napp];
-    for(int i=0;i<napp;i++)
-    {
-        cin>>nap[i];
-    }
-    int nor[norange];
-       for(int i=0;i<norange;i++)
-    {
-        cin>>nor[i];
-    }
-    int acount=0;
-    int ocount=0;
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
     
-    for(int i=0;i<napp;i++)
+    multiset<int,greater<int>>set1;
+    int n;
+    cin>>n;
+    int val;
+    for(auto i=0;i<n;i++)
     {
-        if(((applet+nap[i])>=starth)&&((applet+nap[i])<=endh))
-        {
-            acount++;
-        }
-        
-        
+        cin>>val;
+        set1.insert(val);
     }
-    for(int i=0;i<norange;i++)
+    int m=0;
+    ll miles=0;
+    for(auto itr=set1.begin();itr!=set1.end();itr++)
     {
-        if(((oranget+nor[i])<=endh)&&((oranget+nor[i])>=starth))
-        {
-            ocount++;
-        }
+        miles+=(*(itr)*(pow(2,m)));
+        m++;
     }
-    cout<<acount<<endl;
-    cout<<ocount<<endl;
+    cout<<miles<<endl;
+    return 0;
 }
