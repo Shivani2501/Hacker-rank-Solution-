@@ -1,42 +1,16 @@
 # Hacker-rank-Solution-
-I have written code for apple and orange question on hacker rank in c++
-#include <bits/stdc++.h>
-
-using namespace std;
-
-int main()
+I have written code for Mark and Toys question on hacker rank in c++
+int maximumToys(vector<int> prices, int k) {
+int n=prices.size();
+int sum=0;
+int count=0;
+sort(prices.begin(),prices.end());
+for(int i=0;i<n;i++)
 {
-    int starth,endh,applet,oranget,napp,norange;
-    cin>>starth>>endh>>applet>>oranget>>napp>>norange;
-    int nap[napp];
-    for(int i=0;i<napp;i++)
-    {
-        cin>>nap[i];
+    if(sum<=k)
+    {sum+=prices[i];
+    count++;
     }
-    int nor[norange];
-       for(int i=0;i<norange;i++)
-    {
-        cin>>nor[i];
-    }
-    int acount=0;
-    int ocount=0;
-    
-    for(int i=0;i<napp;i++)
-    {
-        if(((applet+nap[i])>=starth)&&((applet+nap[i])<=endh))
-        {
-            acount++;
-        }
-        
-        
-    }
-    for(int i=0;i<norange;i++)
-    {
-        if(((oranget+nor[i])<=endh)&&((oranget+nor[i])>=starth))
-        {
-            ocount++;
-        }
-    }
-    cout<<acount<<endl;
-    cout<<ocount<<endl;
+}
+return count-1;
 }
